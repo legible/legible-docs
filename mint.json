@@ -54,8 +54,8 @@
 		}
 	],
 	"openapi": [
-		"/api-reference/legible-connect/openapi.json",
-		"/api-reference/legible-librarian/openapi.json"
+		"api-reference/legible-connect/openapi.json",
+		"api-reference/legible-librarian/openapi.json"
 	],
 	"navigation": [
 		{
