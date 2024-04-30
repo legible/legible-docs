@@ -1,91 +1,110 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
-  "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": [
-        "introduction",
-        "quickstart",
-        "development"
-      ]
-    },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
-    {
-      "group": "API Documentation",
-      "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
-      ]
-    }
-  ],
-  "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+	"$schema": "https://mintlify.com/schema.json",
+	"name": "Legible Internal Developer Docs",
+	"logo": {
+		"dark": "/logo/logo-full@monochrome@dark.svg",
+		"light": "/logo/logo-full@monochrome@light.svg"
+	},
+	"backgroundImage": "/images/lightbeam-docs-bg.webp",
+	"favicon": "/favicon.svg",
+	"colors": {
+		"primary": "#06040B",
+		"light": "#FDE4D2",
+		"dark": "#182e29",
+		"background": {
+			"dark": "#000003",
+			"light": "#F5F5F5"
+		},
+		"anchors": {
+			"from": "#0e1517",
+			"to": "#182e29"
+		}
+	},
+	"topbarLinks": [
+		{
+			"name": "Support",
+			"url": "mailto:hi@mintlify.com"
+		}
+	],
+	"topbarCtaButton": {
+		"name": "Dashboard",
+		"url": "https://dashboard.mintlify.com"
+	},
+	"tabs": [
+		{
+			"name": "API Reference",
+			"url": "api-reference"
+		}
+	],
+	"anchors": [
+		{
+			"name": "Documentation",
+			"icon": "book-open-cover",
+			"url": "https://mintlify.com/docs"
+		},
+		{
+			"name": "Community",
+			"icon": "slack",
+			"url": "https://mintlify.com/community"
+		},
+		{
+			"name": "Blog",
+			"icon": "newspaper",
+			"url": "https://mintlify.com/blog"
+		}
+	],
+	"navigation": [
+		{
+			"group": "Get Started",
+			"pages": [
+				"introduction",
+				"quickstart",
+				"development"
+			]
+		},
+		{
+			"group": "Essentials",
+			"pages": [
+				"essentials/markdown",
+				"essentials/code",
+				"essentials/images",
+				"essentials/settings",
+				"essentials/navigation",
+				"essentials/reusable-snippets"
+			]
+		},
+		{
+			"group": "API Documentation",
+			"pages": [
+				"api-reference/introduction"
+			]
+		},
+		{
+			"group": "Legible Librarian",
+			"pages": [
+				"api-reference/legible-librarian/_overview",
+				"api-reference/legible-librarian/semantic-search",
+				"api-reference/legible-librarian/continue-reading",
+				"api-reference/legible-librarian/trending-now",
+				"api-reference/legible-librarian/popular-in",
+				"api-reference/legible-librarian/based-on",
+				"api-reference/legible-librarian/listicles"
+			]
+		},
+		{
+			"group": "Legible Connect",
+			"pages": [
+				"api-reference/legible-connect/_overview",
+				"api-reference/legible-connect/playback",
+				"api-reference/legible-connect/scrub"
+			]
+		}
+		
+
+	],
+	"footerSocials": {
+		"x": "https://x.com/mintlify",
+		"github": "https://github.com/mintlify",
+		"linkedin": "https://www.linkedin.com/company/mintsearch"
+	}
 }

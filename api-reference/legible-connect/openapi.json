@@ -1,0 +1,224 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Legible Connect API",
+		"version": "1.0.0",
+		"description": "API for managing playback, devices, and events in a connected environment."
+	},
+	"servers": [
+		{
+			"url": "https://connect.legible-api-services.com"
+		}
+	],
+	"security": [
+		{
+			"bearerAuth": []
+		}
+	],
+	"paths": {
+		"/playback/{user-id}": {
+			"post": {
+				"summary": "Playback Manager",
+				"description": "Syncs the playback state and current track across all instances of applications the user is logged into.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Playback data to sync across devices.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PlayBackData"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Playback successfully updated.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PlayBackData"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/scrub": {
+			"patch": {
+				"summary": "Scrub Manager",
+				"description": "Pass position in ms to sync across all devices. Sync received via webhook or websocket on active device.",
+				"requestBody": {
+					"required": true,
+					"content": {
+					  "application/json": {
+						"schema": {
+						  "type": "object",
+						  "properties": {
+							"userId": {
+							  "type": "string",
+							  "description": "The unique identifier for the user."
+							},
+							"deviceId": {
+							  "type": "string",
+							  "description": "The unique identifier for the device."
+							},
+							"position": {
+							  "type": "integer",
+							  "description": "The new playback position in milliseconds."
+							}
+						  },
+						  "required": ["userId", "deviceId", "position"]
+						}
+					  }
+					}
+				  },
+				"responses": {
+					"204": {
+						"description": "Position successfully updated across devices, no content in response."
+					}
+				}
+			}
+		},
+		"/events/{user-id}/{event}": {
+			"post": {
+				"summary": "Event Manager",
+				"description": "Pre-made lists ranging from book clubs, celebrity recommendations, etc. Can be organized into groups.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "event",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Event data successfully returned.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EventData"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/device/{user-id}": {
+			"post": {
+				"summary": "Device Manager",
+				"description": "Assign UUID to each device when first logged into it. Update active device based on most recently played on, or if user assigns a new active device from app.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "device-uuid",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"description": "Device data to manage.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeviceData"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Device successfully managed.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DeviceData"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"PlayBackData": {
+				"type": "object",
+				"properties": {
+					"trackId": {
+						"type": "string"
+					},
+					"position": {
+						"type": "integer"
+					},
+					"playing": {
+						"type": "boolean"
+					}
+				}
+			},
+			"DeviceData": {
+				"type": "object",
+				"properties": {
+					"uuid": {
+						"type": "string"
+					},
+					"isActive": {
+						"type": "boolean"
+					}
+				}
+			},
+			"EventData": {
+				"type": "object",
+				"properties": {
+					"eventID": {
+						"type": "string"
+					},
+					"eventName": {
+						"type": "string"
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"bearerAuth": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	}
+}

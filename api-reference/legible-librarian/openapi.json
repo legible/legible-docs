@@ -1,0 +1,329 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Legible Librarian API",
+		"description": "An API for the Legible Librarian service, which provides book recommendations and lists.",
+		"version": "1.0.0"
+	},
+	"servers": [
+		{
+			"url": "https://librarian.legible-api-services.com"
+		}
+	],
+	"security": [
+		{
+			"bearerAuth": []
+		}
+	],
+	"paths": {
+		"/continue-reading/{user-id}": {
+			"get": {
+				"summary": "Continue Reading",
+				"description": "Gets a list of the user's recently read but not finished books.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A JSON array of books",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BookList"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/popular-in/{locale}": {
+			"get": {
+				"summary": "Popular In",
+				"description": "Gets a list of the most popular books in a country based on locale.",
+				"parameters": [
+					{
+						"name": "locale",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A JSON array of books",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BookList"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/trending-now/{locale}": {
+			"get": {
+				"summary": "Trending Now",
+				"description": "Gets a list of the most popular books on Legible based on locale language.",
+				"parameters": [
+					{
+						"name": "locale",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A JSON array of books",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BookList"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/based-on/{user-id}": {
+			"get": {
+				"summary": "Based On",
+				"description": "ML/AI derived recommendation list based on a book ID passed, or defaults to recently finished book; prioritizing by user rating, % read, etc.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "book-id",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "A JSON array of books",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BookList"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/listicles": {
+			"get": {
+				"summary": "Listicles",
+				"description": "Pre-made lists ranging from book clubs, celebrity recommendations, etc. Can be fetched by groups.",
+				"parameters": [
+					{
+						"name": "list-id",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "list-group-id",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful response",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/BookList"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/semantic-search": {
+			"post": {
+				"summary": "Semantic Search",
+				"description": "Performs a semantic AI search with a long query string.",
+				"requestBody": {
+					"description": "Search request payload",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"searchString": {
+										"type": "string",
+										"description": "Search string with support for long queries up to 1000+ characters.",
+										"maxLength": 1000
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Search results",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SearchResults"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"Plant": {
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"properties": {
+					"name": {
+						"description": "The name of the plant",
+						"type": "string"
+					},
+					"tag": {
+						"description": "Tag to specify the type",
+						"type": "string"
+					}
+				}
+			},
+			"NewPlant": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/Plant"
+					},
+					{
+						"required": [
+							"id"
+						],
+						"type": "object",
+						"properties": {
+							"id": {
+								"description": "Identification number of the plant",
+								"type": "integer",
+								"format": "int64"
+							}
+						}
+					}
+				]
+			},
+			"Error": {
+				"required": [
+					"error",
+					"message"
+				],
+				"type": "object",
+				"properties": {
+					"error": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"message": {
+						"type": "string"
+					}
+				}
+			},
+			"BookList": {
+				"type": "object",
+				"properties": {
+					"books": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/Book"
+						}
+					}
+				}
+			},
+			"Book": {
+				"type": "object",
+				"required": [
+					"isbn",
+					"title",
+					"author",
+					"cover",
+					"type",
+					"rating"
+				],
+				"properties": {
+					"isbn": {
+						"type": "number"
+					},
+					"cover": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"author": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["ebook", "audiobook"],
+						"description": "The format of the book."
+					},
+					"rating": {
+						"type": "number"
+					}
+				}
+			},
+			"SearchResults": {
+				"type": "object",
+				"properties": {
+					"results": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/Book"
+						}
+					}
+				}
+			}
+		},
+		"securitySchemes": {
+			"bearerAuth": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	}
+}
