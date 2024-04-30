@@ -13,7 +13,7 @@
 		"dark": "#182e29",
 		"background": {
 			"dark": "#000003",
-			"light": "#F5F5F5"
+			"light": "#F8F8F8"
 		},
 		"anchors": {
 			"from": "#0e1517",
@@ -54,8 +54,8 @@
 		}
 	],
 	"openapi": [
-		"api-reference/legible-connect/openapi.json",
-		"api-reference/legible-librarian/openapi.json"
+		"api-reference/legible-librarian/openapi",
+		"api-reference/legible-connect/openapi"
 	],
 	"navigation": [
 		{
