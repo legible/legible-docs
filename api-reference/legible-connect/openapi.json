@@ -2,7 +2,7 @@
 	"openapi": "3.0.1",
 	"info": {
 		"title": "Legible Connect API",
-		"version": "1.0.0",
+		"version": "1.0.1",
 		"description": "API for managing playback, devices, and events in a connected environment."
 	},
 	"servers": [
@@ -62,28 +62,32 @@
 				"requestBody": {
 					"required": true,
 					"content": {
-					  "application/json": {
-						"schema": {
-						  "type": "object",
-						  "properties": {
-							"userId": {
-							  "type": "string",
-							  "description": "The unique identifier for the user."
-							},
-							"deviceId": {
-							  "type": "string",
-							  "description": "The unique identifier for the device."
-							},
-							"position": {
-							  "type": "integer",
-							  "description": "The new playback position in milliseconds."
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"userId": {
+										"type": "string",
+										"description": "The unique identifier for the user."
+									},
+									"deviceId": {
+										"type": "string",
+										"description": "The unique identifier for the device."
+									},
+									"position": {
+										"type": "integer",
+										"description": "The new playback position in milliseconds."
+									}
+								},
+								"required": [
+									"userId",
+									"deviceId",
+									"position"
+								]
 							}
-						  },
-						  "required": ["userId", "deviceId", "position"]
 						}
-					  }
 					}
-				  },
+				},
 				"responses": {
 					"204": {
 						"description": "Position successfully updated across devices, no content in response."
