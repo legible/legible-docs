@@ -2,8 +2,8 @@
 	"$schema": "https://mintlify.com/schema.json",
 	"name": "Legible Internal Developer Docs",
 	"logo": {
-		"dark": "/logo/logo-full@monochrome@dark.svg",
-		"light": "/logo/logo-full@monochrome@light.svg"
+		"dark": "/logo/legible-developer@monochrome@dark.svg",
+		"light": "/logo/legible-developer@monochrome@light.svg"
 	},
 	"backgroundImage": "/images/lightbeam-docs-bg.webp",
 	"favicon": "/favicon.svg",
