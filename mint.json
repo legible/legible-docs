@@ -53,6 +53,10 @@
 			"url": "https://mintlify.com/blog"
 		}
 	],
+	"openapi": [
+		"api-reference/legible-connect/openapi.json",
+		"api-reference/legible-librarian/openapi.json"
+	],
 	"navigation": [
 		{
 			"group": "Get Started",
@@ -99,8 +103,6 @@
 				"api-reference/legible-connect/scrub"
 			]
 		}
-		
-
 	],
 	"footerSocials": {
 		"x": "https://x.com/mintlify",
