@@ -1,0 +1,176 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Legible Transport API",
+		"version": "1.0.0",
+		"description": "API for content delivery across different platforms."
+	},
+	"servers": [
+		{
+			"url": "https://api.legibletransport.com",
+			"description": "Production server"
+		}
+	],
+	"paths": {
+		"/aaos/content/{user-id}": {
+			"post": {
+				"summary": "AAOS Content Delivery",
+				"description": "Delivers tab/screen content for the Android Auto OS Media App so that we can update content with a CMS.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Content delivered successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PlayBackData"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/device/{user-id}/{device-uuid}": {
+			"post": {
+				"summary": "Player Content Delivery",
+				"description": "Delivers tab/screen content for the Web/Android/iOS/Desktop applications so that we can manage content with a CMS across all other devices.",
+				"parameters": [
+					{
+						"name": "user-id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "device-uuid",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Content delivered successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DeviceData"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/audiobook/{isbn}": {
+			"post": {
+				"summary": "Audiobook Delivery",
+				"description": "Delivery of Audiobook index files.",
+				"parameters": [
+					{
+						"name": "isbn",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Audiobook index delivered successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AudioBookIndex"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ebook/{isbn}": {
+			"post": {
+				"summary": "Ebook Delivery",
+				"description": "Delivery of eBook index files.",
+				"parameters": [
+					{
+						"name": "isbn",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "EBook index delivered successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/EBookIndex"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"PlayBackData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "string",
+						"description": "Playback data"
+					}
+				}
+			},
+			"DeviceData": {
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "string",
+						"description": "Device data"
+					}
+				}
+			},
+			"AudioBookIndex": {
+				"type": "object",
+				"properties": {
+					"index": {
+						"type": "string",
+						"description": "Index of the audiobook"
+					}
+				}
+			},
+			"EBookIndex": {
+				"type": "object",
+				"properties": {
+					"index": {
+						"type": "string",
+						"description": "Index of the ebook"
+					}
+				}
+			}
+		}
+	}
+}

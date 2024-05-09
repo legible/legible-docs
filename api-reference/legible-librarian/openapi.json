@@ -2,8 +2,8 @@
 	"openapi": "3.0.1",
 	"info": {
 		"title": "Legible Librarian API",
-		"description": "An API for the Legible Librarian service, which provides book recommendations and lists.",
-		"version": "1.0.0"
+		"version": "1.0.0",
+		"description": "An API for the Legible Librarian service, which provides book recommendations, lists, and semantic search results."
 	},
 	"servers": [
 		{

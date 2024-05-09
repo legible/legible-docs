@@ -1,0 +1,1042 @@
+---
+title: "Onix Metadata"
+icon: "brackets-curly"
+---
+
+A JSON based [ONIX](https://en.wikipedia.org/wiki/ONIX_for_Books#:~:text=ONIX%20for%20Books%20is%20an,both%20traditional%20books%20and%20eBooks.) metadata schema, converted from XML using [OnixEdit](https://onixedit.com/en-us/Support/Resources). We will be handling all business logic using the JSON metadata format, and this will be stored in a MongoDB database.
+
+<Note>
+  If you are looking for information about the database go to our [Content
+  Metadata](/architecture/databases/content-metadata) page.
+</Note>
+
+## Contexts
+
+<CardGroup cols={2}>
+  	<Card 
+  		title="Content Metadata Database" 
+		icon='database'
+  		href="/architecture/databases/content-metadata"
+	>
+    	MongoDB
+ 	</Card>
+  	<Card 
+  		title="Legible Transport API" 
+		icon="circle-nodes"
+		href="#"
+	>
+    	Content delivery services
+  	</Card>
+  	<Card 
+  		title="OnixEdit Orchestration" 
+		icon="gears"
+		href="#"
+	>
+   		Publisher metadata intake management
+  	</Card>
+</CardGroup>
+
+## Schema
+
+<CodeGroup>
+	```json JSON
+	{
+		"id": "<string>",
+		"Locked": "<boolean>",
+		"CreatedBy": "<string>",
+		"CreationDate": "<string>",
+		"LastModifiedBy": "<string>",
+		"LastModificationDate": "<string>",
+		"LastValidationDate": "<string>",
+		"LastCloudListColumnRefreshDate": "<string>",
+		"LastCustomFieldRefreshDate": "<string>",
+		"ThumbnailExtractionPending": "<boolean>",
+		"LastAIACoverFetchDate": "<string>",
+		"Source": "<string>",
+		"Version": "<string>",
+		"ONIXValidation": {
+			"NbErrors_BEST": 123,
+			"NbErrors_ONIX": 123,
+			"NbErrors_CUSTOM": 123
+		},
+		"ONIX_NOSEQ": "<string>",
+		"XMLValues": "<string>",
+		"language_text_idx": "<string>",
+		"SortFields": {
+			"RecordReference": "<string>",
+			"Title": "<string>",
+			"ISBN10": "<string>",
+			"ISBN13": "<string>",
+			"EAN": "<string>",
+			"ISBN13_EAN": "<string>",
+			"ProductForm": "<string>",
+			"Authors": "<string>",
+			"Subjects": "<string>",
+			"Availability": 123,
+			"CoverImage": "<string>",
+			"PublicationDate": "<string>",
+			"PublishingStatus": "<string>",
+			"OnSaleDate": "<string>"
+		},
+		"RecordReference": {
+			"Value": "<string>"
+		},
+		"NotificationType": {
+			"Value": "<string>"
+		},
+		"ProductIdentifier": [
+			{
+				"ProductIDType": {
+					"Value": "<string>"
+				},
+				"IDTypeName": "<string>",
+				"IDValue": "<string>"
+			}
+		],
+		"Barcode": [
+			{
+				"BarcodeType": {
+					"Value": "<string>"
+				}
+			}
+		],
+		"DescriptiveDetail": {
+			"ProductComposition": {
+				"Value": "<string>"
+			},
+			"ProductForm": "<string>",
+			"ProductFormDetail": [
+				{
+					"Value": "<string>"
+				}
+			],
+			"ProductFormDescription": "<string>",
+			"EpubTechnicalProtection": "<string>",
+			"ProductClassification": [
+				{
+					"ProductClassificationType": "<string>",
+					"ProductClassificationCode": "<string>"
+				}
+			],
+			"TitleDetail": [
+				{
+					"TitleType": "<string>",
+					"TitleElement": [
+						{
+							"TitleElementLevel": "<string>",
+							"NoPrefix": "<boolean>",
+							"TitleWithoutPrefix": "<string>",
+							"Subtitle": "<string>"
+						}
+					]
+				}
+			],
+			"Contributor": [
+				{
+					"ContributorRole": "<string>",
+					"NameIdentifier": [
+						{
+							"NameIDType": "<string>",
+							"IDTypeName": "<string>",
+							"IDValue": "<string>"
+						}
+					],
+					"PersonName": "<string>",
+					"PersonNameInverted": "<string>",
+					"NamesBeforeKey": "<string>",
+					"KeyNames": "<string>",
+					"BiographicalNote": "<string>"
+				}
+			],
+			"ContributorStatement": "<string>",
+			"NoEdition": "<boolean>",
+			"Language": [
+				{
+					"LanguageRole": "<string>",
+					"LanguageCode": "<string>"
+				}
+			],
+			"Extent": [
+				{
+					"ExtentType": "<string>",
+					"ExtentValue": "<string>",
+					"ExtentUnit": "<string>"
+				}
+			],
+			"Subject": [
+				{
+					"MainSubject": "<boolean>",
+					"SubjectSchemeIdentifier": "<string>",
+					"SubjectCode": "<string>",
+					"SubjectHeadingText": "<string>"
+				}
+			],
+			"Audience": [
+				{
+					"AudienceCodeType": "<string>",
+					"AudienceCodeValue": "<string>"
+				}
+			]
+		},
+		"CollateralDetail": {
+			"TextContent": [
+				{
+					"TextType": "<string>",
+					"ContentAudience": [
+						"<string>"
+					],
+					"Text": "<string>",
+					"attributes": {
+						"textformat": "<string>"
+					}
+				}
+			],
+			"SupportingResource": [
+				{
+					"ResourceContentType": "<string>",
+					"ContentAudience": [
+						"<string>"
+					],
+					"ResourceMode": "<string>",
+					"ResourceFeature": [
+						{
+							"ResourceFeatureType": "<string>",
+							"FeatureNote": "<string>"
+						}
+					],
+					"ResourceVersion": [
+						{
+							"ResourceForm": "<string>",
+							"ResourceVersionFeature": [
+								{
+									"ResourceVersionFeatureType": "<string>",
+									"FeatureValue": "<string>"
+								}
+							],
+							"ResourceLink": "<string>",
+							"ContentDate": [
+								{
+									"ContentDateRole": "<string>",
+									"Date": "<string>",
+									"attributes": {
+										"dateformat": "<string>"
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		"PublishingDetail": {
+			"Imprint": [
+				{
+					"ImprintIdentifier": [
+						{
+							"ImprintIDType": "<string>",
+							"IDTypeName": "<string>",
+							"IDValue": "<string>"
+						}
+					],
+					"ImprintName": "<string>"
+				}
+			],
+			"Publisher": [
+				{
+					"PublishingRole": "<string>",
+					"PublisherIdentifier": [
+						{
+							"PublisherIDType": "<string>",
+							"IDValue": "<string>"
+						}
+					],
+					"PublisherName": "<string>"
+				}
+			],
+			"CityOfPublication": [
+				{
+					"Value": "<string>"
+				}
+			],
+			"PublishingStatus": "<string>",
+			"PublishingDate": [
+				{
+					"PublishingDateRole": "<string>",
+					"Date": "<string>",
+					"ISODate": "<string>",
+					"attributes": {
+						"dateformat": "<string>"
+					}
+				}
+			],
+			"SalesRights": [
+				{
+					"SalesRightsType": "<string>",
+					"Territory": {
+						"CountriesIncluded": "<string>"
+					}
+				}
+			]
+		},
+		"RelatedMaterial": {
+			"RelatedWork": [
+				{
+					"WorkRelationCode": "<string>",
+					"WorkIdentifier": [
+						{
+							"WorkIDType": "<string>",
+							"IDValue": "<string>"
+						}
+					]
+				}
+			],
+			"RelatedProduct": [
+				{
+					"ProductRelationCode": "<string>",
+					"ProductIdentifier": [
+						{
+							"ProductIDType": "<string>",
+							"IDValue": "<string>"
+						}
+					]
+				}
+			]
+		},
+		"ProductSupply": [
+			{
+				"SupplyDetail": [
+					{
+						"Supplier": [
+							{
+								"SupplierRole": "<string>",
+								"SupplierName": "<string>"
+							}
+						],
+						"ProductAvailability": "<string>",
+						"SupplyDate": [
+							{
+								"SupplyDateRole": "<string>",
+								"Date": "<string>",
+								"ISODate": "<string>",
+								"attributes": {
+									"dateformat": "<string>"
+								}
+							}
+						],
+						"Price": [
+							{
+								"PriceType": "<string>",
+								"DiscountCoded": [
+									{
+										"DiscountCodeType": "<string>",
+										"DiscountCodeTypeName": "<string>",
+										"DiscountCode": "<string>"
+									}
+								],
+								"PriceAmount": "<string>",
+								"CurrencyCode": "<string>",
+								"Territory": {
+									"CountriesIncluded": "<string>"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+	```
+	```typescript Typescript
+	interface DateAttributes {
+		dateformat: string;
+	}
+
+    interface ProductIDType {
+    	Value: string;
+    }
+
+    interface RecordReference {
+    	Value: string;
+    }
+
+    interface NotificationType {
+    	Value: string;
+    }
+
+    interface BarcodeType {
+    	Value: string;
+    }
+
+    interface ProductFormDetail {
+    	Value: string;
+    }
+
+    interface ProductComposition {
+    	Value: string;
+    }
+
+    interface ProductClassification {
+    	ProductClassificationType: string;
+    	ProductClassificationCode: string;
+    }
+
+    interface NameIdentifier {
+    	NameIDType: string;
+    	IDTypeName: string;
+    	IDValue: string;
+    }
+
+    interface ContentDate {
+    	ContentDateRole: string;
+    	Date: string;
+    	attributes: DateAttributes;
+    }
+
+    interface Territory {
+    	CountriesIncluded: string;
+    }
+
+    interface WorkIdentifier {
+    	WorkIDType: string;
+    	IDValue: string;
+    }
+
+    interface ImprintIdentifier {
+    	ImprintIDType: string;
+    	IDTypeName: string;
+    	IDValue: string;
+    }
+
+    interface PublisherIdentifier {
+    	PublisherIDType: string;
+    	IDValue: string;
+    }
+
+    interface ResourceFeature {
+    	ResourceFeatureType: string;
+    	FeatureNote: string;
+    }
+
+    interface ResourceVersionFeature {
+    	ResourceVersionFeatureType: string;
+    	FeatureValue: string;
+    }
+
+    interface TextAttributes {
+    	textformat: string;
+    }
+
+    interface DiscountCoded {
+    	DiscountCodeType: string;
+    	DiscountCodeTypeName: string;
+    	DiscountCode: string;
+    }
+
+    interface Extent {
+    	ExtentType: string;
+    	ExtentValue: string;
+    	ExtentUnit: string;
+    }
+
+    interface Language {
+    	LanguageRole: string;
+    	LanguageCode: string;
+    }
+
+    interface CityOfPublication {
+    	Value: string;
+    }
+
+    interface Barcode {
+    	BarcodeType: BarcodeType;
+    }
+
+    interface ProductIdentifier {
+    	ProductIDType: ProductIDType;
+    	IDTypeName?: string;
+    	IDValue: string;
+    }
+
+    interface TitleElement {
+    	TitleElementLevel: string;
+    	NoPrefix: boolean;
+    	TitleWithoutPrefix: string;
+    	Subtitle: string;
+    }
+
+    interface Audience {
+    	AudienceCodeType: string;
+    	AudienceCodeValue: string;
+    }
+
+    interface Subject {
+    	MainSubject?: boolean;
+    	SubjectSchemeIdentifier: string;
+    	SubjectCode: string;
+    	SubjectHeadingText?: string;
+    }
+
+    interface TextContent {
+    	TextType: string;
+    	ContentAudience: string[];
+    	Text: string;
+    	attributes: TextAttributes;
+    }
+
+    interface ResourceVersion {
+    	ResourceForm: string;
+    	ResourceVersionFeature: ResourceVersionFeature[];
+    	ResourceLink: string;
+    	ContentDate: ContentDate[];
+    }
+
+    interface RelatedWork {
+    	WorkRelationCode: string;
+    	WorkIdentifier: WorkIdentifier[];
+    }
+
+    interface RelatedProduct {
+    	ProductRelationCode: string;
+    	ProductIdentifier: ProductIdentifier[];
+    }
+
+    interface Imprint {
+    	ImprintIdentifier: ImprintIdentifier[];
+    	ImprintName: string;
+    }
+
+    interface Publisher {
+    	PublishingRole: string;
+    	PublisherIdentifier: PublisherIdentifier[];
+    	PublisherName: string;
+    }
+
+    interface SalesRights {
+    	SalesRightsType: string;
+    	Territory: Territory;
+    }
+
+    interface PublishingDate {
+    	PublishingDateRole: string;
+    	Date: string;
+    	ISODate: string;
+    	attributes: DateAttributes;
+    }
+
+    interface TitleDetail {
+    	TitleType: string;
+    	TitleElement: TitleElement[];
+    }
+
+    interface Contributor {
+    	ContributorRole: string;
+    	NameIdentifier: NameIdentifier[];
+    	PersonName: string;
+    	PersonNameInverted: string;
+    	NamesBeforeKey: string;
+    	KeyNames: string;
+    	BiographicalNote: string;
+    }
+
+    interface SupportingResource {
+    	ResourceContentType: string;
+    	ContentAudience: string[];
+    	ResourceMode: string;
+    	ResourceFeature: ResourceFeature[];
+    	ResourceVersion: ResourceVersion[];
+    }
+
+    interface CollateralDetail {
+    	TextContent: TextContent[];
+    	SupportingResource: SupportingResource[];
+    }
+
+    interface DescriptiveDetail {
+    	ProductComposition: ProductComposition;
+    	ProductForm: string;
+    	ProductFormDetail: ProductFormDetail[];
+    	ProductFormDescription: string;
+    	EpubTechnicalProtection: string;
+    	ProductClassification: ProductClassification[];
+    	TitleDetail: TitleDetail[];
+    	Contributor: Contributor[];
+    	ContributorStatement: string;
+    	NoEdition: boolean;
+    	Language: Language[];
+    	Extent: Extent[];
+    	Subject: Subject[];
+    	Audience: Audience[];
+    }
+
+    interface SupplyDate {
+    	SupplyDateRole: string;
+    	Date: string;
+    	ISODate: string;
+    	attributes: DateAttributes;
+    }
+
+    interface Price {
+    	PriceType: string;
+    	DiscountCoded: DiscountCoded[];
+    	PriceAmount: string;
+    	CurrencyCode: string;
+    	Territory: Territory;
+    }
+
+    interface Supplier {
+    	SupplierRole: string;
+    	SupplierName: string;
+    }
+
+    interface SupplyDetail {
+    	Supplier: Supplier[];
+    	ProductAvailability: string;
+    	SupplyDate: SupplyDate[];
+    	Price: Price[];
+    }
+
+    interface ProductSupply {
+    	SupplyDetail: SupplyDetail[];
+    }
+
+    interface PublishingDetail {
+    	Imprint: Imprint[];
+    	Publisher: Publisher[];
+    	CityOfPublication: CityOfPublication[];
+    	PublishingStatus: string;
+    	PublishingDate: PublishingDate[];
+    	SalesRights: SalesRights[];
+    }
+
+    interface RelatedMaterial {
+    	RelatedWork: RelatedWork[];
+    	RelatedProduct: RelatedProduct[];
+    }
+
+    interface SortFields {
+    	RecordReference: string;
+    	Title: string;
+    	ISBN10: string;
+    	ISBN13: string;
+    	EAN: string;
+    	ISBN13_EAN: string;
+    	ProductForm: string;
+    	Authors: string;
+    	Subjects: string;
+    	Availability: number;
+    	CoverImage: string;
+    	PublicationDate: string;
+    	PublishingStatus: string;
+    	OnSaleDate: string;
+    }
+
+    interface ONIXValidation {
+    	NbErrors_BEST: number;
+    	NbErrors_ONIX: number;
+    	NbErrors_CUSTOM: number;
+    }
+
+    interface Metadata {
+    	id: string;
+    	Locked: boolean;
+    	CreatedBy: string;
+    	CreationDate: string;
+    	LastModifiedBy: string;
+    	LastModificationDate: string;
+    	LastValidationDate: string;
+    	LastCloudListColumnRefreshDate: string;
+    	LastCustomFieldRefreshDate: string;
+    	ThumbnailExtractionPending: boolean;
+    	LastAIACoverFetchDate: string;
+    	Source: string;
+    	Version: string;
+    	ONIXValidation: ONIXValidation;
+    	ONIX_NOSEQ: string;
+    	XMLValues: string;
+    	language_text_idx: string;
+    	SortFields: SortFields;
+    	RecordReference: RecordReference;
+    	NotificationType: NotificationType;
+    	ProductIdentifier: ProductIdentifier[];
+    	Barcode: Barcode[];
+    	DescriptiveDetail: DescriptiveDetail;
+    	CollateralDetail: CollateralDetail;
+    	PublishingDetail: PublishingDetail;
+    	RelatedMaterial: RelatedMaterial;
+    	ProductSupply: ProductSupply[];
+    }
+    ```
+    ```rust Rust
+    use serde::{Serialize, Deserialize};
+    use std::collections::HashMap;
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct DateAttributes {
+    	pub dateformat: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductIDType {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct RecordReference {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct NotificationType {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct BarcodeType {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductFormDetail {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductComposition {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductClassification {
+    	pub product_classification_type: String,
+    	pub product_classification_code: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct NameIdentifier {
+    	pub name_id_type: String,
+    	pub id_type_name: String,
+    	pub id_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ContentDate {
+    	pub content_date_role: String,
+    	pub date: String,
+    	pub attributes: DateAttributes,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Territory {
+    	pub countries_included: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct WorkIdentifier {
+    	pub work_id_type: String,
+    	pub id_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ImprintIdentifier {
+    	pub imprint_id_type: String,
+    	pub id_type_name: String,
+    	pub id_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct PublisherIdentifier {
+    	pub publisher_id_type: String,
+    	pub id_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ResourceFeature {
+    	pub resource_feature_type: String,
+    	pub feature_note: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ResourceVersionFeature {
+    	pub resource_version_feature_type: String,
+    	pub feature_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct TextAttributes {
+    	pub textformat: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct DiscountCoded {
+    	pub discount_code_type: String,
+    	pub discount_code_type_name: String,
+    	pub discount_code: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Extent {
+    	pub extent_type: String,
+    	pub extent_value: String,
+    	pub extent_unit: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Language {
+    	pub language_role: String,
+    	pub language_code: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct CityOfPublication {
+    	pub value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Barcode {
+    	pub barcode_type: BarcodeType,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductIdentifier {
+    	pub product_id_type: ProductIDType,
+    	pub id_type_name: Option<String>,
+    	pub id_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct TitleElement {
+    	pub title_element_level: String,
+    	pub no_prefix: bool,
+    	pub title_without_prefix: String,
+    	pub subtitle: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Audience {
+    	pub audience_code_type: String,
+    	pub audience_code_value: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Subject {
+    	pub main_subject: Option<bool>,
+    	pub subject_scheme_identifier: String,
+    	pub subject_code: String,
+    	pub subject_heading_text: Option<String>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct TextContent {
+    	pub text_type: String,
+    	pub content_audience: Vec<String>,
+    	pub text: String,
+    	pub attributes: TextAttributes,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ResourceVersion {
+    	pub resource_form: String,
+    	pub resource_version_feature: Vec<ResourceVersionFeature>,
+    	pub resource_link: String,
+    	pub content_date: Vec<ContentDate>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct RelatedWork {
+    	pub work_relation_code: String,
+    	pub work_identifier: Vec<WorkIdentifier>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct RelatedProduct {
+    	pub product_relation_code: String,
+    	pub product_identifier: Vec<ProductIdentifier>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Imprint {
+    	pub imprint_identifier: Vec<ImprintIdentifier>,
+    	pub imprint_name: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Publisher {
+    	pub publishing_role: String,
+    	pub publisher_identifier: Vec<PublisherIdentifier>,
+    	pub publisher_name: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct SalesRights {
+    	pub sales_rights_type: String,
+    	pub territory: Territory,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct PublishingDate {
+    	pub publishing_date_role: String,
+    	pub date: String,
+    	pub iso_date: String,
+    	pub attributes: DateAttributes,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct TitleDetail {
+    	pub title_type: String,
+    	pub title_element: Vec<TitleElement>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Contributor {
+    	pub contributor_role: String,
+    	pub name_identifier: Vec<NameIdentifier>,
+    	pub person_name: String,
+    	pub person_name_inverted: String,
+    	pub names_before_key: String,
+    	pub key_names: String,
+    	pub biographical_note: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct SupportingResource {
+    	pub resource_content_type: String,
+    	pub content_audience: Vec<String>,
+    	pub resource_mode: String,
+    	pub resource_feature: Vec<ResourceFeature>,
+    	pub resource_version: Vec<ResourceVersion>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct CollateralDetail {
+    	pub text_content: Vec<TextContent>,
+    	pub supporting_resource: Vec<SupportingResource>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct DescriptiveDetail {
+    	pub product_composition: ProductComposition,
+    	pub product_form: String,
+    	pub product_form_detail: Vec<ProductFormDetail>,
+    	pub product_form_description: String,
+    	pub epub_technical_protection: String,
+    	pub product_classification: Vec<ProductClassification>,
+    	pub title_detail: Vec<TitleDetail>,
+    	pub contributor: Vec<Contributor>,
+    	pub contributor_statement: String,
+    	pub no_edition: bool,
+    	pub language: Vec<Language>,
+    	pub extent: Vec<Extent>,
+    	pub subject: Vec<Subject>,
+    	pub audience: Vec<Audience>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct SupplyDate {
+    	pub supply_date_role: String,
+    	pub date: String,
+    	pub iso_date: String,
+    	pub attributes: DateAttributes,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Price {
+    	pub price_type: String,
+    	pub discount_coded: Vec<DiscountCoded>,
+    	pub price_amount: String,
+    	pub currency_code: String,
+    	pub territory: Territory,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Supplier {
+    	pub supplier_role: String,
+    	pub supplier_name: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct SupplyDetail {
+    	pub supplier: Vec<Supplier>,
+    	pub product_availability: String,
+    	pub supply_date: Vec<SupplyDate>,
+    	pub price: Vec<Price>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ProductSupply {
+    	pub supply_detail: Vec<SupplyDetail>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct PublishingDetail {
+    	pub imprint: Vec<Imprint>,
+    	pub publisher: Vec<Publisher>,
+    	pub city_of_publication: Vec<CityOfPublication>,
+    	pub publishing_status: String,
+    	pub publishing_date: Vec<PublishingDate>,
+    	pub sales_rights: Vec<SalesRights>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct RelatedMaterial {
+    	pub related_work: Vec<RelatedWork>,
+    	pub related_product: Vec<RelatedProduct>,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct SortFields {
+    	pub record_reference: String,
+    	pub title: String,
+    	pub isbn10: String,
+    	pub isbn13: String,
+    	pub ean: String,
+    	pub isbn13_ean: String,
+    	pub product_form: String,
+    	pub authors: String,
+    	pub subjects: String,
+    	pub availability: i32,
+    	pub cover_image: String,
+    	pub publication_date: String,
+    	pub publishing_status: String,
+    	pub on_sale_date: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct ONIXValidation {
+    	pub nb_errors_best: i32,
+    	pub nb_errors_onix: i32,
+    	pub nb_errors_custom: i32,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Metadata {
+    	pub id: String,
+    	pub locked: bool,
+    	pub created_by: String,
+    	pub creation_date: String,
+    	pub last_modified_by: String,
+    	pub last_modification_date: String,
+    	pub last_validation_date: String,
+    	pub last_cloud_list_column_refresh_date: String,
+    	pub last_custom_field_refresh_date: String,
+    	pub thumbnail_extraction_pending: bool,
+    	pub last_aia_cover_fetch_date: String,
+    	pub source: String,
+    	pub version: String,
+    	pub onix_validation: ONIXValidation,
+    	pub onix_noseq: String,
+    	pub xml_values: String,
+    	pub language_text_idx: String,
+    	pub sort_fields: SortFields,
+    	pub record_reference: RecordReference,
+    	pub notification_type: NotificationType,
+    	pub product_identifier: Vec<ProductIdentifier>,
+    	pub barcode: Vec<Barcode>,
+    	pub descriptive_detail: DescriptiveDetail,
+    	pub collateral_detail: CollateralDetail,
+    	pub publishing_detail: PublishingDetail,
+    	pub related_material: RelatedMaterial,
+    	pub product_supply: Vec<ProductSupply>,
+    }
+    ```
+
+</CodeGroup>

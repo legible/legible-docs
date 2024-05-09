@@ -16,14 +16,14 @@
 			"light": "#F8F8F8"
 		},
 		"anchors": {
-			"from": "#0e1517",
-			"to": "#182e29"
+			"from": "#182e29",
+			"to": "#0e1517"
 		}
 	},
 	"topbarLinks": [
 		{
 			"name": "Support",
-			"url": "mailto:hi@mintlify.com"
+			"url": "mailto:andrew@legible.com"
 		}
 	],
 	"topbarCtaButton": {
@@ -32,30 +32,20 @@
 	},
 	"tabs": [
 		{
+			"name": "Architecture",
+			"url": "architecture"
+		},
+		{
 			"name": "API Reference",
 			"url": "api-reference"
 		}
 	],
 	"anchors": [
 		{
-			"name": "Documentation",
+			"name": "Legible",
 			"icon": "book-open-cover",
-			"url": "https://mintlify.com/docs"
-		},
-		{
-			"name": "Community",
-			"icon": "slack",
-			"url": "https://mintlify.com/community"
-		},
-		{
-			"name": "Blog",
-			"icon": "newspaper",
-			"url": "https://mintlify.com/blog"
+			"url": "https://legible.com"
 		}
-	],
-	"openapi": [
-		"api-reference/legible-librarian/openapi",
-		"api-reference/legible-connect/openapi"
 	],
 	"navigation": [
 		{
@@ -75,6 +65,31 @@
 				"essentials/settings",
 				"essentials/navigation",
 				"essentials/reusable-snippets"
+			]
+		},
+		{
+			"group": "Architecture",
+			"pages": [
+				"architecture/introduction"
+			]
+		},
+		{
+			"group": "Databases",
+			"pages": [
+				"architecture/databases/content-metadata",
+				"architecture/databases/content-fs"
+			]
+		},
+		{
+			"group": "Services",
+			"pages": [
+				"architecture/services/onixedit-orchestration"
+			]
+		},
+		{
+			"group": "Schemas",
+			"pages": [
+				"architecture/schema/onix-metadata"
 			]
 		},
 		{
@@ -106,7 +121,7 @@
 	],
 	"footerSocials": {
 		"x": "https://x.com/mintlify",
-		"github": "https://github.com/mintlify",
+		"github": "https://github.com/legible",
 		"linkedin": "https://www.linkedin.com/company/mintsearch"
 	}
 }
