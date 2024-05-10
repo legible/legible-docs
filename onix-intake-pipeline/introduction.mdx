@@ -1,0 +1,41 @@
+---
+title: "Introduction"
+---
+
+## OIP (Onix Intake Pipeline) System Overview
+
+### Introduction
+This document provides an overview of the Onix Intake Pipeline (OIP), detailing the system's purpose, architecture, and key components involved in processing and managing publisher metadata efficiently.
+
+### System Purpose
+The OIP is designed to streamline the ingestion, processing, and storage of JSON metadata files from publishers, ensuring high reliability and consistency across digital content management.
+
+### Data Flow
+Data flows through the system as follows:
+
+<Steps>
+  	<Step title="Metadata Reception">
+    	Publisher metadata is received at the [Kafka Intake Queue](/onix-intake-pipeline/services/kafka-queue), which serves as the entry point for incoming JSON files.
+  	</Step>
+  	<Step title="Data Processing">
+    	The [Onix Orchestration](/onix-intake-pipeline/services/onixedit-orchestration) service retrieves data from the Kafka Intake Queue, processes it to ensure validity and completeness, and updates the [MongoDB](/onix-intake-pipeline/databases/content-metadata) with new or updated entries.
+  	</Step>
+  	<Step title="Initiate Download">
+    	Once the metadata update is confirmed, the Orchestration Service sends a download request to the [Content Fetcher](/onix-intake-pipeline/services/content-fetcher), specifying the files to be retrieved.
+  	</Step>
+  	<Step title="File Storage">
+    	The Content Fetcher successfully downloads the files and securely stores them in the [Content File Server](/onix-intake-pipeline/databases/content-fs). It then confirms the completion of the download process back to the Onix Orchestration.
+  	</Step>
+	<Step title="Completion Confirmation">
+    	The Onix Orchestration confirms the successful handling of each file by sending a completion signal back to the Kafka Queue, allowing the system to proceed with the next item.
+	</Step>
+</Steps>
+
+### Technologies Used
+The system utilizes Node.js for service implementations, Kafka for message queuing, MongoDB for metadata storage, and various file handling libraries for the Fetch Service.
+
+### Security and Compliance
+Security measures include data encryption in transit and at rest, use of HTTPS for all internal communications, and strict access controls on MongoDB and the file system.
+
+### Scalability and Performance
+The system is designed for high scalability to handle increasing loads seamlessly. Performance metrics include processing throughput and response times, monitored continuously to ensure optimal performance.

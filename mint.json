@@ -1,127 +1,115 @@
 {
-	"$schema": "https://mintlify.com/schema.json",
-	"name": "Legible Internal Developer Docs",
-	"logo": {
-		"dark": "/logo/legible-developer@monochrome@dark.svg",
-		"light": "/logo/legible-developer@monochrome@light.svg"
-	},
-	"backgroundImage": "/images/lightbeam-docs-bg.webp",
-	"favicon": "/favicon.svg",
-	"colors": {
-		"primary": "#06040B",
-		"light": "#FDE4D2",
-		"dark": "#182e29",
-		"background": {
-			"dark": "#000003",
-			"light": "#F8F8F8"
-		},
-		"anchors": {
-			"from": "#182e29",
-			"to": "#0e1517"
-		}
-	},
-	"topbarLinks": [
-		{
-			"name": "Support",
-			"url": "mailto:andrew@legible.com"
-		}
-	],
-	"topbarCtaButton": {
-		"name": "Dashboard",
-		"url": "https://dashboard.mintlify.com"
-	},
-	"tabs": [
-		{
-			"name": "Architecture",
-			"url": "architecture"
-		},
-		{
-			"name": "API Reference",
-			"url": "api-reference"
-		}
-	],
-	"anchors": [
-		{
-			"name": "Legible",
-			"icon": "book-open-cover",
-			"url": "https://legible.com"
-		}
-	],
-	"navigation": [
-		{
-			"group": "Get Started",
-			"pages": [
-				"introduction",
-				"quickstart",
-				"development"
-			]
-		},
-		{
-			"group": "Essentials",
-			"pages": [
-				"essentials/markdown",
-				"essentials/code",
-				"essentials/images",
-				"essentials/settings",
-				"essentials/navigation",
-				"essentials/reusable-snippets"
-			]
-		},
-		{
-			"group": "Architecture",
-			"pages": [
-				"architecture/introduction"
-			]
-		},
-		{
-			"group": "Databases",
-			"pages": [
-				"architecture/databases/content-metadata",
-				"architecture/databases/content-fs"
-			]
-		},
-		{
-			"group": "Services",
-			"pages": [
-				"architecture/services/onixedit-orchestration"
-			]
-		},
-		{
-			"group": "Schemas",
-			"pages": [
-				"architecture/schema/onix-metadata"
-			]
-		},
-		{
-			"group": "API Documentation",
-			"pages": [
-				"api-reference/introduction"
-			]
-		},
-		{
-			"group": "Legible Librarian",
-			"pages": [
-				"api-reference/legible-librarian/_overview",
-				"api-reference/legible-librarian/semantic-search",
-				"api-reference/legible-librarian/continue-reading",
-				"api-reference/legible-librarian/trending-now",
-				"api-reference/legible-librarian/popular-in",
-				"api-reference/legible-librarian/based-on",
-				"api-reference/legible-librarian/listicles"
-			]
-		},
-		{
-			"group": "Legible Connect",
-			"pages": [
-				"api-reference/legible-connect/_overview",
-				"api-reference/legible-connect/playback",
-				"api-reference/legible-connect/scrub"
-			]
-		}
-	],
-	"footerSocials": {
-		"x": "https://x.com/mintlify",
-		"github": "https://github.com/legible",
-		"linkedin": "https://www.linkedin.com/company/mintsearch"
-	}
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Legible Internal Developer Docs",
+  "logo": {
+    "dark": "/logo/legible-developer@monochrome@dark.svg",
+    "light": "/logo/legible-developer@monochrome@light.svg"
+  },
+  "backgroundImage": "/images/lightbeam-docs-bg.webp",
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#06040B",
+    "light": "#FDE4D2",
+    "dark": "#182e29",
+    "background": {
+      "dark": "#000003",
+      "light": "#F8F8F8"
+    },
+    "anchors": {
+      "from": "#182e29",
+      "to": "#0e1517"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:andrew@legible.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://dashboard.mintlify.com"
+  },
+  "tabs": [
+    {
+      "name": "Onix Intake Pipeline",
+      "url": "onix-intake-pipeline"
+    },
+    {
+      "name": "API Reference",
+      "url": "api-reference"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "legible.com",
+      "icon": "book-open-cover",
+      "url": "https://legible.com"
+    }
+  ],
+  "openapi": [
+    "/api-reference/legible-connect/openapi.json",
+    "/api-reference/legible-librarian/openapi.json",
+    "/api-reference/legible-transport/openapi.json"
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": ["introduction"]
+    },
+    {
+      "group": "Onix Intake Pipeline",
+      "pages": [
+        "onix-intake-pipeline/introduction",
+        "onix-intake-pipeline/introduction-long"
+      ]
+    },
+    {
+      "group": "Content Databases",
+      "pages": [
+        "onix-intake-pipeline/databases/content-metadata",
+        "onix-intake-pipeline/databases/content-fs"
+      ]
+    },
+    {
+      "group": "Services",
+      "pages": [
+        "onix-intake-pipeline/services/kafka-queue",
+        "onix-intake-pipeline/services/onixedit-orchestration",
+        "onix-intake-pipeline/services/content-fetcher"
+      ]
+    },
+    {
+      "group": "Schemas",
+      "pages": ["onix-intake-pipeline/schema/onix-metadata"]
+    },
+    {
+      "group": "API Documentation",
+      "pages": ["api-reference/introduction"]
+    },
+    {
+      "group": "Legible Librarian",
+      "pages": [
+        "api-reference/legible-librarian/_overview",
+        "api-reference/legible-librarian/semantic-search",
+        "api-reference/legible-librarian/continue-reading",
+        "api-reference/legible-librarian/trending-now",
+        "api-reference/legible-librarian/popular-in",
+        "api-reference/legible-librarian/based-on",
+        "api-reference/legible-librarian/listicles"
+      ]
+    },
+    {
+      "group": "Legible Connect",
+      "pages": [
+        "api-reference/legible-connect/_overview",
+        "api-reference/legible-connect/playback",
+        "api-reference/legible-connect/scrub"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/legible",
+    "linkedin": "https://www.linkedin.com/company/legibleinc"
+  }
 }

@@ -3,14 +3,14 @@ title: "Onix Metadata"
 icon: "brackets-curly"
 ---
 
-A JSON based [ONIX](https://en.wikipedia.org/wiki/ONIX_for_Books#:~:text=ONIX%20for%20Books%20is%20an,both%20traditional%20books%20and%20eBooks.) metadata schema, converted from XML using [OnixEdit](https://onixedit.com/en-us/Support/Resources). We will be handling all business logic using the JSON metadata format, and this will be stored in a MongoDB database.
+A JSON based [ONIX](https://en.wikipedia.org/wiki/ONIX_for_Books) metadata schema, converted from XML using [OnixEdit](https://onixedit.com/en-us/Support/Resources). We will be handling all business logic using the JSON metadata format, and this will be stored in a MongoDB database.
 
 <Note>
   If you are looking for information about the database go to our [Content
   Metadata](/architecture/databases/content-metadata) page.
 </Note>
 
-## Contexts
+## Used In
 
 <CardGroup cols={2}>
   	<Card 
@@ -1038,5 +1038,4 @@ A JSON based [ONIX](https://en.wikipedia.org/wiki/ONIX_for_Books#:~:text=ONIX%20
     	pub product_supply: Vec<ProductSupply>,
     }
     ```
-
 </CodeGroup>

@@ -1,0 +1,76 @@
+---
+title: 'Metadata: MongoDB'
+icon: 'database'
+---
+
+## Overview
+
+### Purpose of the Database
+
+The Content Metadata database is essential for storing and managing the metadata associated with the digital content processed by the Onix Orchestration service. It serves as the backbone for indexing, querying, and retrieval operations within the digital content management system, enhanced by Azure CDN for efficient global access.
+
+### High-Level Data Flow
+
+The database receives metadata updates from the Onix Orchestration service and provides robust querying capabilities to support the operational and analytical needs of the system, with Azure CDN ensuring fast and reliable data delivery across geographic locations.
+
+## Architecture
+
+### Database Design
+
+Designed to handle large volumes of data efficiently, the database supports rapid data insertion and complex queries, which are vital for real-time content management and retrieval.
+
+### Component Interaction
+
+- **Onix Orchestration**: Sends metadata for storage and updates.
+- **Content Fetcher**: Queries metadata to associate downloaded files with their corresponding metadata records.
+
+## Detailed Workflow
+
+### Metadata Storage
+
+<Steps>
+  <Step title="Receive Metadata">
+    Accepts metadata updates from the Onix Orchestration service following the ingestion of new content or updates to existing content.
+  </Step>
+  <Step title="Store Metadata">
+    Stores metadata in a structured format that facilitates quick access and efficient querying, utilizing Azure CDN for enhanced content delivery.
+  </Step>
+</Steps>
+
+### Querying Metadata
+
+<Steps>
+  <Step title="Support Queries">
+    Provides support for complex queries from internal services, including content retrieval and status checks, leveraging Azure CDN to minimize latency.
+  </Step>
+  <Step title="Data Retrieval">
+    Retrieves metadata based on specific criteria to support the operational needs of the Content Fetcher and other services, with Azure CDN ensuring high availability and performance.
+  </Step>
+</Steps>
+
+### Update and Maintenance
+
+<Steps>
+  <Step title="Handle Updates">
+    Processes updates to metadata records as new data becomes available or corrections are made to existing entries.
+  </Step>
+  <Step title="Maintain Integrity">
+    Maintains the integrity and consistency of metadata through regular checks and balances, with Azure CDN providing redundancy and reliability.
+  </Step>
+</Steps>
+
+## Technologies Used
+
+- **MongoDB**: A NoSQL database that offers flexibility and scalability for handling large sets of unstructured data.
+- **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js that provides a straightforward, schema-based solution to model application data.
+- **Azure CDN**: Enhances the performance and availability of the metadata access globally by caching data at strategic edge locations, reducing latency and improving load times for end-users.
+
+## Monitoring and Logging
+
+Implements comprehensive monitoring to ensure the performance and availability of the database, with detailed logging of all transactions and modifications, supported by Azure CDN for distributed monitoring.
+
+## Security Measures
+
+- **Data Encryption**: Ensures that all data stored in the database is encrypted at rest and in transit, with Azure CDN enhancing security at the edge.
+- **Access Controls**: Implements role-based access controls to manage who can view or modify the database contents.
+

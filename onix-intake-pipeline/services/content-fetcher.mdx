@@ -1,0 +1,94 @@
+---
+title: "Content Fetcher"
+icon: "sink"
+---
+
+## Overview
+
+### Purpose of the Service
+
+The Content Fetcher service is responsible for downloading content files as requested by the Onix Orchestration service. It acts as a sink in the data pipeline, ensuring that files are retrieved and stored securely in the designated File System.
+
+### High-Level Process Flow
+
+This service manages the retrieval of digital content associated with metadata processed by the Onix Orchestration service, confirming successful downloads or logging failures.
+
+## Architecture
+
+### Service Design
+
+The service is designed to handle high volumes of download requests concurrently, optimizing file transfer and minimizing latency.
+
+### Component Interaction
+
+<CardGroup cols={2}>
+  	<Card 
+  		title="Onix Orchestration" 
+		icon="diagram-subtask"
+		href="/onix-intake-pipeline/services/kafka-queue"
+	>
+    	Receives download commands and metadata for FS URI.
+  	</Card>
+	  	<Card 
+  		title="File System" 
+		icon='server'
+  		href="/onix-intake-pipeline/databases/content-metadata"
+	>
+    	Stores downloaded files securely.
+ 	</Card>
+</CardGroup>
+
+
+## Detailed Workflow
+
+### Receiving Download Commands
+
+<Steps>
+  <Step title="Receive Requests">
+    Accepts download requests from the Onix Orchestration service, including URLs and file metadata.
+  </Step>
+  <Step title="Queue Management">
+    Manages a queue of download tasks to prioritize and handle them efficiently.
+  </Step>
+</Steps>
+
+### Executing Downloads
+
+<Steps>
+  <Step title="Download Files">
+    Initiates file downloads using HTTP or FTP protocols based on the provided URLs.
+  </Step>
+  <Step title="Validate Downloads">
+    Validates the integrity of downloaded files through checksums or file size comparisons.
+  </Step>
+  <Step title="Store Files">
+    Saves the downloaded files to the designated File System, ensuring data consistency and integrity.
+  </Step>
+</Steps>
+
+### Handling Responses
+
+<Steps>
+  <Step title="Notify Success">
+    Sends success notifications back to the Onix Orchestration service to confirm the completion of downloads.
+  </Step>
+  <Step title="Error Handling">
+    Reports any failures in the download process back to the Onix Orchestration service for logging and potential retry.
+  </Step>
+</Steps>
+
+## Technologies Used
+
+- **Node.js**: For handling asynchronous file downloads and network operations.
+- **Axios**: For HTTP requests to download files.
+- **File System API**: For storing and managing files on the server.
+
+## Monitoring and Logging
+
+Comprehensive logging is implemented to track download progress, success rates, and any errors encountered during the download process.
+
+## Security Measures
+
+- **Data Encryption**: Ensures that all file transfers are encrypted using industry-standard protocols.
+- **Access Controls**: Implements strict access controls to prevent unauthorized access to the downloaded files.
+

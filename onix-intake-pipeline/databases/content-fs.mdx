@@ -1,0 +1,55 @@
+---
+title: 'File Server: Blob'
+icon: 'server'
+---
+
+## Overview
+
+### Purpose of the File Server
+
+The Content File Server is dedicated to the storage and management of digital assets related to the metadata processed by the Onix Orchestration system. It provides a secure and scalable environment for file storage, ensuring files are available for retrieval and distribution.
+
+### High-Level Data Flow
+
+Files are downloaded by the Content Fetcher service and stored on the server, where they are linked to their respective metadata entries in the Content Metadata database.
+
+## Architecture
+
+### Storage Design
+
+The server is structured to handle various file types and sizes efficiently, optimizing storage and access speeds to meet the demands of high throughput and low latency file operations.
+
+### Component Interaction
+
+- **Content Fetcher**: Directly interacts with the server to store files after download.
+- **Onix Orchestration**: Retrieves file locations for metadata updates and operational activities.
+
+## Detailed Workflow
+
+
+<Steps>
+  <Step title="Store Files">
+    Receives files from the Content Fetcher and securely stores them, organizing them according to metadata for easy retrieval.
+  </Step>
+  <Step title="Retrieve Files">
+    Provides mechanisms for quick and secure file retrieval based on requests from authorized services and users.
+  </Step>
+</Steps>
+
+
+## Technologies Used
+
+- **File System**: Utilizes robust file system management technologies to organize and handle the storage of large amounts of data efficiently.
+- **Azure Blob Storage (Blob)**: Acts like a Network Attached Storage (NAS) but is designed specifically for cloud environments. 
+- **Azure CDN**: Integrates with Azure CDN to ensure fast delivery of content across global locations.
+
+## Monitoring and Logging
+
+Ensures continuous monitoring of system health and performance, with detailed logging of file access and changes to ensure auditability and compliance.
+
+## Security Measures
+
+- **Data Encryption**: Applies strong encryption protocols for files both at rest and during transfer.
+- **Azure Security Features**: Leverages Azure's built-in security features to enhance the overall protection of stored data.
+- **Access Controls**: Strict access controls and authentication mechanisms are in place to ensure that only authorized personnel and systems can access or modify the files.
+
