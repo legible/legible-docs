@@ -2,11 +2,11 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Legible Internal Developer Docs",
   "logo": {
-    "dark": "/logo/legible-developer@monochrome@dark.svg",
-    "light": "/logo/legible-developer@monochrome@light.svg"
+    "dark": "/images/logo/legible-developer@monochrome@dark.svg",
+    "light": "/images/logo/legible-developer@monochrome@light.svg"
   },
   "backgroundImage": "/images/lightbeam-docs-bg.webp",
-  "favicon": "/favicon.svg",
+  "favicon": "/images/favicon.svg",
   "colors": {
     "primary": "#06040B",
     "light": "#FDE4D2",
@@ -32,12 +32,16 @@
   },
   "tabs": [
     {
-      "name": "Onix Intake Pipeline",
-      "url": "onix-intake-pipeline"
+      "name": "API Reference",
+      "url": "pages/api-reference"
     },
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Onix Intake Pipeline",
+      "url": "pages/onix-intake-pipeline"
+    },
+    {
+      "name": "Web Player",
+      "url": "pages/web-player"
     }
   ],
   "anchors": [
@@ -48,63 +52,99 @@
     }
   ],
   "openapi": [
-    "/api-reference/legible-connect/openapi.json",
-    "/api-reference/legible-librarian/openapi.json",
-    "/api-reference/legible-transport/openapi.json"
+    "pages/api-reference/legible-connect/openapi.json",
+    "pages/api-reference/legible-librarian/openapi.json",
+    "pages/api-reference/legible-transport/openapi.json"
   ],
   "navigation": [
     {
       "group": "Get Started",
-      "pages": ["introduction"]
-    },
-    {
-      "group": "Onix Intake Pipeline",
-      "pages": [
-        "onix-intake-pipeline/introduction",
-        "onix-intake-pipeline/introduction-long"
-      ]
-    },
-    {
-      "group": "Content Databases",
-      "pages": [
-        "onix-intake-pipeline/databases/content-metadata",
-        "onix-intake-pipeline/databases/content-fs"
-      ]
-    },
-    {
-      "group": "Services",
-      "pages": [
-        "onix-intake-pipeline/services/kafka-queue",
-        "onix-intake-pipeline/services/onixedit-orchestration",
-        "onix-intake-pipeline/services/content-fetcher"
-      ]
-    },
-    {
-      "group": "Schemas",
-      "pages": ["onix-intake-pipeline/schema/onix-metadata"]
+      "pages": ["pages/introduction"]
     },
     {
       "group": "API Documentation",
-      "pages": ["api-reference/introduction"]
+      "pages": ["pages/api-reference/introduction"]
     },
     {
       "group": "Legible Librarian",
       "pages": [
-        "api-reference/legible-librarian/_overview",
-        "api-reference/legible-librarian/semantic-search",
-        "api-reference/legible-librarian/continue-reading",
-        "api-reference/legible-librarian/trending-now",
-        "api-reference/legible-librarian/popular-in",
-        "api-reference/legible-librarian/based-on",
-        "api-reference/legible-librarian/listicles"
+        "pages/api-reference/legible-librarian/_overview",
+        "pages/api-reference/legible-librarian/semantic-search",
+        "pages/api-reference/legible-librarian/continue-reading",
+        "pages/api-reference/legible-librarian/trending-now",
+        "pages/api-reference/legible-librarian/popular-in",
+        "pages/api-reference/legible-librarian/based-on",
+        "pages/api-reference/legible-librarian/listicles"
       ]
     },
     {
       "group": "Legible Connect",
       "pages": [
-        "api-reference/legible-connect/_overview",
-        "api-reference/legible-connect/playback",
-        "api-reference/legible-connect/scrub"
+        "pages/api-reference/legible-connect/_overview",
+        "pages/api-reference/legible-connect/playback",
+        "pages/api-reference/legible-connect/scrub"
+      ]
+    },
+    {
+      "group": "Onix Intake Pipeline",
+      "pages": [
+        "pages/onix-intake-pipeline/introduction",
+        "pages/onix-intake-pipeline/introduction-long"
+      ]
+    },
+    {
+      "group": "Content Databases",
+      "pages": [
+        "pages/onix-intake-pipeline/databases/content-metadata",
+        "pages/onix-intake-pipeline/databases/content-fs"
+      ]
+    },
+    {
+      "group": "Services",
+      "pages": [
+        "pages/onix-intake-pipeline/services/kafka-queue",
+        "pages/onix-intake-pipeline/services/onixedit-orchestration",
+        "pages/onix-intake-pipeline/services/content-fetcher"
+      ]
+    },
+    {
+      "group": "Schemas",
+      "pages": ["pages/onix-intake-pipeline/schema/onix-metadata"]
+    },
+    {
+      "group": "Web Player",
+      "pages": [
+		"pages/web-player/introduction",
+		"pages/web-player/features",
+		"pages/web-player/competitors"
+	]
+    },
+    {
+      "group": "Event Model",
+      "pages": [
+		{
+			"group": "User Events",
+			"pages": [
+				"pages/web-player/event-model/user-events/global-events",
+				"pages/web-player/event-model/user-events/account-settings",	
+				"pages/web-player/event-model/user-events/playback-interactions",
+				"pages/web-player/event-model/user-events/playlist-interactions",
+				"pages/web-player/event-model/user-events/authentication"
+			]
+		},
+		{
+			"group": "Admin Events",
+			"pages": [
+				"pages/web-player/event-model/admin-events/cms"
+			]
+		},
+		{
+			"group": "App Events",
+			"pages": [
+				"pages/web-player/event-model/app-events/on-load",
+				"pages/web-player/event-model/app-events/recurring-payment"
+			]
+		}
       ]
     }
   ],

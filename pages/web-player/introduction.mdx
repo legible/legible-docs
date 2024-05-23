@@ -1,0 +1,76 @@
+---
+title: 'Overview'
+---
+
+# Introduction
+
+This document presents the architecture of our Next.js web application designed to deliver ebooks, audiobooks, and podcasts efficiently. Our goal is to build a scalable, robust, and user-friendly platform utilizing modern technologies and frameworks.
+
+## Core Technologies
+
+**Next.js**: Utilized for its server-side rendering and static site generation capabilities, optimizing performance and SEO.
+
+<AccordionGroup>
+  <Accordion title="Authentication and Multi-Tenancy User Management" icon="users">
+    **Clerk**: Manages user authentication and user data, ensuring a secure and seamless login experience across different sessions and devices. Has built in B2B and multi-tenancy, dashboards, and contexts.
+  </Accordion>
+
+  <Accordion title="Payment Processing and Compliance" icon="credit-card">
+    **Paddle**: Handles seamless payment processing while automatically managing regional tax compliance, thus simplifying global transactions.
+  </Accordion>
+
+  <Accordion title="Semantic AI Search and Analytics" icon="message">
+    **Algolia**: Provides advanced search functionality and analytics, enabling fast and relevant search experiences and insights into user interactions.
+  </Accordion>
+
+  <Accordion title="E-Reader Functionality" icon="book-open">
+    **Colibrio Reader**: Facilitates ebook reading directly in the web browser, supporting multiple formats and providing customizable reading options.
+  </Accordion>
+
+  <Accordion title="Cross Device Synchronization" icon="reflect-horizontal">
+    **Legible Connect**: Ensures data synchronization across devices, enhancing user experience by providing continuity in content engagement across platforms.
+  </Accordion>
+
+  <Accordion title="Content Recommendation" icon="star">
+    **Legible Librarian**: Leverages Algolia's search capabilities to offer personalized content recommendations based on regional popularity and user activity.
+  </Accordion>
+
+  <Accordion title="Content Delivery" icon="truck">
+    **Legible Transport**: Delivers content efficiently using a combination of APIs and CDN, managing the distribution of metadata and content streams optimally.
+  </Accordion>
+
+  <Accordion title="Data Pipeline" icon="input-numeric">
+    **Segment**: Orchestrates data ingestion and management enabling robust data analysis, and possibly supporting our targeted marketing and content recommendation systems.
+  </Accordion>
+</AccordionGroup>
+
+
+## Development and Deployment
+
+<AccordionGroup>
+  <Accordion title="Local Development" icon="code">
+    Developers can set up their environment by cloning the relevant Git branch and running `npm run dev`. This simplicity in setup allows for quick changes and testing without the need for Docker or other containerization technologies.
+  </Accordion>
+
+  <Accordion title="Version Control" icon="code-branch">
+    **Git/GitHub**: Used for version control with a branch strategy that facilitates feature development and production deployments.
+    **TypeScript**: Enforced across all codebases to ensure type safety and reduce runtime errors.
+  </Accordion>
+
+  <Accordion title="TypeScript Enforcement" icon="font">
+    **TypeScript**: Enforced across all codebases to ensure type safety and reduce runtime errors.
+  </Accordion>
+
+  <Accordion title="Continuous Integration and Deployment" icon="rotate">
+    **Vercel**: Automates CI/CD, leveraging its seamless integration with GitHub to ensure that every push is built, tested, and deployed automatically. This integration supports efficient delivery cycles and high availability.
+  </Accordion>
+
+  <Accordion title="CSS Strategy" icon="border-bottom-right">
+    Discussion ongoing regarding the choice between adopting a CSS framework or using a design pattern with tokenization. This decision will impact how we manage styles across the application, aiming to balance between ease of use and customization flexibility.
+  </Accordion>
+
+  <Accordion title="Security and Compliance" icon="lock">
+    Adheres to best practices in web security, including data encryption at rest and in transit, regular security audits, and compliance with relevant data protection regulations.
+  </Accordion>
+</AccordionGroup>
+
