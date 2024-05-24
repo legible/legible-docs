@@ -7,7 +7,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://librarian.legible-api-services.com"
+			"url": "https://librarian.legible-api-services.com/v0"
 		}
 	],
 	"security": [

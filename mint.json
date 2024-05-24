@@ -1,155 +1,162 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Legible Internal Developer Docs",
-  "logo": {
-    "dark": "/images/logo/legible-developer@monochrome@dark.svg",
-    "light": "/images/logo/legible-developer@monochrome@light.svg"
-  },
-  "backgroundImage": "/images/lightbeam-docs-bg.webp",
-  "favicon": "/images/favicon.svg",
-  "colors": {
-    "primary": "#06040B",
-    "light": "#FDE4D2",
-    "dark": "#182e29",
-    "background": {
-      "dark": "#000003",
-      "light": "#F8F8F8"
-    },
-    "anchors": {
-      "from": "#182e29",
-      "to": "#0e1517"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:andrew@legible.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "pages/api-reference"
-    },
-    {
-      "name": "Onix Intake Pipeline",
-      "url": "pages/onix-intake-pipeline"
-    },
-    {
-      "name": "Web Player",
-      "url": "pages/web-player"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "legible.com",
-      "icon": "book-open-cover",
-      "url": "https://legible.com"
-    }
-  ],
-  "openapi": [
-    "pages/api-reference/legible-connect/openapi.json",
-    "pages/api-reference/legible-librarian/openapi.json",
-    "pages/api-reference/legible-transport/openapi.json"
-  ],
-  "navigation": [
-    {
-      "group": "Get Started",
-      "pages": ["pages/introduction"]
-    },
-    {
-      "group": "API Documentation",
-      "pages": ["pages/api-reference/introduction"]
-    },
-    {
-      "group": "Legible Librarian",
-      "pages": [
-        "pages/api-reference/legible-librarian/_overview",
-        "pages/api-reference/legible-librarian/semantic-search",
-        "pages/api-reference/legible-librarian/continue-reading",
-        "pages/api-reference/legible-librarian/trending-now",
-        "pages/api-reference/legible-librarian/popular-in",
-        "pages/api-reference/legible-librarian/based-on",
-        "pages/api-reference/legible-librarian/listicles"
-      ]
-    },
-    {
-      "group": "Legible Connect",
-      "pages": [
-        "pages/api-reference/legible-connect/_overview",
-        "pages/api-reference/legible-connect/playback",
-        "pages/api-reference/legible-connect/scrub"
-      ]
-    },
-    {
-      "group": "Onix Intake Pipeline",
-      "pages": [
-        "pages/onix-intake-pipeline/introduction",
-        "pages/onix-intake-pipeline/introduction-long"
-      ]
-    },
-    {
-      "group": "Content Databases",
-      "pages": [
-        "pages/onix-intake-pipeline/databases/content-metadata",
-        "pages/onix-intake-pipeline/databases/content-fs"
-      ]
-    },
-    {
-      "group": "Services",
-      "pages": [
-        "pages/onix-intake-pipeline/services/kafka-queue",
-        "pages/onix-intake-pipeline/services/onixedit-orchestration",
-        "pages/onix-intake-pipeline/services/content-fetcher"
-      ]
-    },
-    {
-      "group": "Schemas",
-      "pages": ["pages/onix-intake-pipeline/schema/onix-metadata"]
-    },
-    {
-      "group": "Web Player",
-      "pages": [
-		"pages/web-player/introduction",
-		"pages/web-player/features",
-		"pages/web-player/competitors"
-	]
-    },
-    {
-      "group": "Event Model",
-      "pages": [
+	"$schema": "https://mintlify.com/schema.json",
+	"name": "Legible Internal Developer Docs",
+	"logo": {
+		"dark": "/images/logo/legible-developer@monochrome@dark.svg",
+		"light": "/images/logo/legible-developer@monochrome@light.svg"
+	},
+	"backgroundImage": "/images/lightbeam-docs-bg.webp",
+	"favicon": "/images/favicon.svg",
+	"colors": {
+		"primary": "#06040B",
+		"light": "#FDE4D2",
+		"dark": "#182e29",
+		"background": {
+			"dark": "#000003",
+			"light": "#F8F8F8"
+		},
+		"anchors": {
+			"from": "#182e29",
+			"to": "#0e1517"
+		}
+	},
+	"topbarLinks": [
 		{
-			"group": "User Events",
+			"name": "Support",
+			"url": "mailto:andrew@legible.com"
+		}
+	],
+	"topbarCtaButton": {
+		"name": "Dashboard",
+		"url": "https://dashboard.mintlify.com"
+	},
+	"tabs": [
+		{
+			"name": "API Reference",
+			"url": "pages/api-reference"
+		},
+		{
+			"name": "Onix Intake Pipeline",
+			"url": "pages/onix-intake-pipeline"
+		},
+		{
+			"name": "Web Player",
+			"url": "pages/web-player"
+		}
+	],
+	"anchors": [
+		{
+			"name": "legible.com",
+			"icon": "book-open-cover",
+			"url": "https://legible.com"
+		}
+	],
+	"openapi": [
+		"pages/api-reference/legible-connect/openapi.json",
+		"pages/api-reference/legible-librarian/openapi.json",
+		"pages/api-reference/legible-transport/openapi.json"
+	],
+	"navigation": [
+		{
+			"group": "Get Started",
+			"pages": ["pages/introduction"]
+		},
+		{
+			"group": "API Documentation",
+			"pages": ["pages/api-reference/introduction"]
+		},
+		{
+			"group": "Legible Librarian",
 			"pages": [
-				"pages/web-player/event-model/user-events/global-events",
-				"pages/web-player/event-model/user-events/account-settings",	
-				"pages/web-player/event-model/user-events/playback-interactions",
-				"pages/web-player/event-model/user-events/playlist-interactions",
-				"pages/web-player/event-model/user-events/authentication"
+				"pages/api-reference/legible-librarian/_overview",
+				"pages/api-reference/legible-librarian/semantic-search",
+				"pages/api-reference/legible-librarian/continue-reading",
+				"pages/api-reference/legible-librarian/trending-now",
+				"pages/api-reference/legible-librarian/popular-in",
+				"pages/api-reference/legible-librarian/based-on",
+				"pages/api-reference/legible-librarian/listicles"
 			]
 		},
 		{
-			"group": "Admin Events",
+			"group": "Legible Connect",
 			"pages": [
-				"pages/web-player/event-model/admin-events/cms"
+				"pages/api-reference/legible-connect/_overview",
+				"pages/api-reference/legible-connect/playback",
+				"pages/api-reference/legible-connect/scrub",
+				"pages/api-reference/legible-connect/event",
+				"pages/api-reference/legible-connect/device"
 			]
 		},
 		{
-			"group": "App Events",
+			"group": "Onix Intake Pipeline",
 			"pages": [
-				"pages/web-player/event-model/app-events/on-load",
-				"pages/web-player/event-model/app-events/recurring-payment"
+				"pages/onix-intake-pipeline/introduction",
+				"pages/onix-intake-pipeline/introduction-long"
+			]
+		},
+		{
+			"group": "Content Databases",
+			"pages": [
+				"pages/onix-intake-pipeline/databases/content-metadata",
+				"pages/onix-intake-pipeline/databases/content-fs"
+			]
+		},
+		{
+			"group": "Services",
+			"pages": [
+				"pages/onix-intake-pipeline/services/kafka-queue",
+				"pages/onix-intake-pipeline/services/onixedit-orchestration",
+				"pages/onix-intake-pipeline/services/content-fetcher"
+			]
+		},
+		{
+			"group": "Schemas",
+			"pages": ["pages/onix-intake-pipeline/schema/onix-metadata"]
+		},
+		{
+			"group": "Web Player",
+			"pages": [
+				"pages/web-player/introduction",
+				"pages/web-player/features",
+				"pages/web-player/competitors"
+			]
+		},
+		{
+			"group": "Event Model",
+			"pages": [
+				{
+					"group": "User Events",
+					"pages": [
+						"pages/web-player/event-model/user-events/global-events",
+						"pages/web-player/event-model/user-events/account-settings",
+						"pages/web-player/event-model/user-events/playback-interactions",
+						"pages/web-player/event-model/user-events/playlist-interactions",
+						"pages/web-player/event-model/user-events/authentication"
+					]
+				},
+				{
+					"group": "Admin Events",
+					"pages": ["pages/web-player/event-model/admin-events/cms"]
+				},
+				{
+					"group": "App Events",
+					"pages": [
+						"pages/web-player/event-model/app-events/on-load",
+						"pages/web-player/event-model/app-events/recurring-payment"
+					]
+				},
+				{
+					"group": "Server-Sent Events",
+					"pages": [
+						"pages/web-player/event-model/server-sent-events/overview",
+						"pages/web-player/event-model/server-sent-events/implementation"
+					]
+				}
 			]
 		}
-      ]
-    }
-  ],
-  "footerSocials": {
-    "github": "https://github.com/legible",
-    "linkedin": "https://www.linkedin.com/company/legibleinc"
-  }
+	],
+	"footerSocials": {
+		"github": "https://github.com/legible",
+		"linkedin": "https://www.linkedin.com/company/legibleinc"
+	}
 }

@@ -7,7 +7,7 @@
 	},
 	"servers": [
 		{
-			"url": "https://api.legibletransport.com",
+			"url": "https://transport.legible-api-services.com/v0",
 			"description": "Production server"
 		}
 	],

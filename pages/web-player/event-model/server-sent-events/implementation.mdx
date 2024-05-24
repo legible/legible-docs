@@ -1,0 +1,228 @@
+---
+title: "Implementation"
+"icon": "server"
+---
+
+# Device Event Synchronization
+
+Server-Sent Events (SSE) enable real-time communication from the server to the client over a single, long-lived HTTP connection, making it ideal for scenarios like device synchronization where updates are frequent and one-directional.
+
+## Understanding SSE
+
+SSE is a standard allowing servers to push updates to the client automatically. It is particularly suited for applications where real-time updates are crucial, such as live notifications, news feeds, or in this case, synchronizing states across devices.
+
+### Key Advantages of SSE:
+
+- **Simplicity**: Operates over standard HTTP.
+- **Efficiency**: No need to repeatedly poll the server for updates.
+- **Built-in Reconnection**: Automatic reconnection mechanism if the connection is dropped.
+
+## Implementation Details
+
+### Server-Side Setup
+
+Simplified psuedo-example of a Server-Sent Event with a heartbeat to keep the connection alive. 
+
+```typescript Node.js
+import express from 'express';
+
+const app = express();
+const PORT = 3000;
+
+let clientConnected = false;
+const CLIENT_TIMEOUT = 30000; // 30 seconds
+
+const checkClientConnection = () => {
+	if (!clientConnected) {
+		console.log('No client response, shutting down the server.');
+		process.exit();
+	}
+	clientConnected = false;
+};
+
+setInterval(checkClientConnection, CLIENT_TIMEOUT);
+
+app.get('/events', (req, res) => {
+	res.setHeader('Content-Type', 'text/event-stream');
+	res.setHeader('Cache-Control', 'no-cache');
+	res.setHeader('Connection', 'keep-alive');
+
+	const sendEvent = (data: object) => {
+		res.write(`data: ${JSON.stringify(data)}\n\n`);
+		clientConnected = true; // Mark client as connected upon sending data
+	};
+
+	// Example: Send data every 10 seconds
+	const intervalId = setInterval(() => {
+		const data = { playbackPosition: new Date().getTime() };
+		sendEvent(data);
+	}, 10000);
+
+	req.on('close', () => {
+		clearInterval(intervalId);
+		res.end();
+		console.log('Client disconnected, stopping data send.');
+	});
+});
+
+app.listen(PORT, () => {
+	console.log(`SSE server started on port ${PORT}`);
+});
+
+
+```
+
+### Client-Side Setup
+
+Some simplified psuedo-examples of subscribing to SSE's. 
+
+<CodeGroup>
+```typescript Next.js
+import { useEffect } from 'react';
+
+const useSSE = (url: string) => {
+	useEffect(() => {
+		const eventSource = new EventSource(url);
+
+		eventSource.onmessage = (event: MessageEvent) => {
+			const data = JSON.parse(event.data);
+			console.log('Updated data received:', data);
+		};
+
+		eventSource.onerror = (err: Event) => {
+			console.error('EventSource failed:', err);
+		};
+
+		return () => {
+			eventSource.close();
+		};
+
+	}, [url]);
+};
+
+const MyComponent = () => {
+	useSSE('apiUri/v0/connect/events/sse');
+	return (
+		<div>
+			<p>Listening for SSE...</p>
+		</div>
+	);
+};
+
+export default MyComponent;
+```
+```kotlin Kotlin
+import okhttp3.*
+import java.io.IOException
+
+fun startSSE(url: String) {
+val client = OkHttpClient()
+val request = Request.Builder().url(url).build()
+val call = client.newCall(request)
+
+    call.enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            println("EventSource failed: $e")
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            response.body?.let { responseBody ->
+                responseBody.source().apply {
+                    while (!this.exhausted()) {
+                        val line = this.readUtf8Line()
+                        line?.let {
+                            if (it.startsWith("data: ")) {
+                                val data = it.substring(6)
+                                println("Updated data received: $data")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
+
+}
+
+````
+```swift Swift
+import Foundation
+
+class EventSource {
+    var url: URL
+    var task: URLSessionDataTask?
+    let session: URLSession
+
+    init(url: String) {
+        self.url = URL(string: url)!
+        self.session = URLSession(configuration: .default)
+    }
+
+    func connect() {
+        let request = URLRequest(url: self.url)
+        task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("EventSource failed: \(error)")
+                return
+            }
+
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                let lines = dataString.split(separator: "\n")
+                for line in lines {
+                    if line.starts(with: "data: ") {
+                        let jsonData = line.dropFirst(6)
+                        print("Updated data received: \(jsonData)")
+                    }
+                }
+            }
+        }
+        task?.resume()
+    }
+
+    func disconnect() {
+        task?.cancel()
+    }
+}
+
+// Usage
+let eventSource = EventSource(url: "apiUri/v0/connect/events/sse")
+eventSource.connect()
+````
+
+```typescript React Native
+import { useEffect } from "react";
+import { View, Text } from "react-native";
+
+const useSSE = (url: string) => {
+  	useEffect(() => {
+    	const eventSource = new EventSource(url);
+
+	    eventSource.onmessage = (event: MessageEvent) => {
+    		const data = JSON.parse(event.data);
+      		console.log("Updated data received:", data);
+    	};
+
+    	eventSource.onerror = (err: Event) => {
+      		console.error("EventSource failed:", err);
+    	};
+
+    	return () => {
+      		eventSource.close();
+    	};
+  	}, [url]);
+};
+
+const MyComponent = () => {
+  	useSSE("apiUri/v0/connect/events/sse");
+
+  	return (
+    	<View>
+      		<Text>Listening for SSE...</Text>
+    	</View>
+  	);
+};
+
+export default MyComponent;
+```
+
+</CodeGroup>
